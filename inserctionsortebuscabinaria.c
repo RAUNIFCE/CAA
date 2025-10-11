@@ -36,7 +36,7 @@ int main()
     for(int i=1;i<5;i++){
         chave=vetor[i];
         pos=buscabinaria(vetor,chave,0,i-1);
-        printf("\n %d",pos);
+        
         for(int j=i-1;j>=pos;j--){
             vetor[j+1]=vetor[j];
         }
