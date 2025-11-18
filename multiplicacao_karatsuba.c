@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <math.h>
+int numdig (int a){
+    int dig=0;
+    while(a>0){
+        a=a/10;
+        dig++;
+    }
+    return dig;
+}
+int max(int a,int b){
+    if(a>b){
+        return a;
+    }else{
+        return b;
+    }
+}
+long long pot(int x,int y){
+    while(y>2){
+        x=x*x;
+        y--;
+    }
+    return x;
+}
+long long m_trad(int x,int y){
+    long long xl,xr,yl,yr,p1,p2,p3,p4,m,n,resultado;
+    if((x<10)||(y<10)){
+        return x*y;
+    }
+    n=numdig(max(x,y));
+    m=n/2;
+    if(n%2==1){
+        m++;
+    }
+    long long potencia=(pow(10,m));
+    xl=x/(pow(10,m));
+    xr=x%potencia;
+    yl=y/(pow(10,m));
+    yr=y%potencia;
+    p1=m_trad(xl,yl);
+    //p2=m_trad(xl,yr);
+    //p3=m_trad(xr,yl);
+    //p4=m_trad(xr,yr);
+    p2=m_trad(xr,yr);
+    p3=m_trad(xl+xr,yl+yr);
+    resultado=((pow(10,2*m)*p1)+(pow(10,m)*(p3-p1-p2))+p2);
+
+    return resultado;
+}
+
+int main() {
+    setlocale(LC_ALL,"portuguese" );
+    long long z=m_trad(123,12);
+
+
+    printf("%d",z);
+    return 0;
+}
